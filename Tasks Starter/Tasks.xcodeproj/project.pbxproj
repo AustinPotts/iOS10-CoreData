@@ -10,6 +10,9 @@
 		451884092354DA73001E6CCD /* Tasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 451884072354DA73001E6CCD /* Tasks.xcdatamodeld */; };
 		4518840B2354DD78001E6CCD /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4518840A2354DD78001E6CCD /* CoreDataStack.swift */; };
 		4518840D2354E3A7001E6CCD /* Task+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4518840C2354E3A7001E6CCD /* Task+Convenience.swift */; };
+		4518840F2354EB23001E6CCD /* TaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4518840E2354EB23001E6CCD /* TaskController.swift */; };
+		451884112354EE15001E6CCD /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451884102354EE15001E6CCD /* TasksTableViewController.swift */; };
+		451884132354EFE7001E6CCD /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451884122354EFE7001E6CCD /* TaskDetailViewController.swift */; };
 		9D4408C7211FF431005E2116 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4408C6211FF431005E2116 /* AppDelegate.swift */; };
 		9D4408CC211FF431005E2116 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D4408CA211FF431005E2116 /* Main.storyboard */; };
 		9D4408CE211FF434005E2116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D4408CD211FF434005E2116 /* Assets.xcassets */; };
@@ -20,6 +23,9 @@
 		451884082354DA73001E6CCD /* Tasks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tasks.xcdatamodel; sourceTree = "<group>"; };
 		4518840A2354DD78001E6CCD /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		4518840C2354E3A7001E6CCD /* Task+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Convenience.swift"; sourceTree = "<group>"; };
+		4518840E2354EB23001E6CCD /* TaskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskController.swift; sourceTree = "<group>"; };
+		451884102354EE15001E6CCD /* TasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewController.swift; sourceTree = "<group>"; };
+		451884122354EFE7001E6CCD /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		9D4408C3211FF431005E2116 /* Tasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D4408C6211FF431005E2116 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D4408CB211FF431005E2116 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -91,6 +97,8 @@
 		9D4408DA211FF50D005E2116 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				451884122354EFE7001E6CCD /* TaskDetailViewController.swift */,
+				451884102354EE15001E6CCD /* TasksTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -98,6 +106,7 @@
 		9D4408E6211FF988005E2116 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4518840E2354EB23001E6CCD /* TaskController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -174,9 +183,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				451884132354EFE7001E6CCD /* TaskDetailViewController.swift in Sources */,
+				451884112354EE15001E6CCD /* TasksTableViewController.swift in Sources */,
 				4518840D2354E3A7001E6CCD /* Task+Convenience.swift in Sources */,
 				4518840B2354DD78001E6CCD /* CoreDataStack.swift in Sources */,
 				451884092354DA73001E6CCD /* Tasks.xcdatamodeld in Sources */,
+				4518840F2354EB23001E6CCD /* TaskController.swift in Sources */,
 				9D4408C7211FF431005E2116 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

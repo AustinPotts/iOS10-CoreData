@@ -13,13 +13,16 @@ import CoreData
 
 extension Task {
     
-    convenience init(name: String, notes: String, context: NSManagedObjectContext) {
+    
+    
+    
+    //This initializer sets up the core data (NSManagedObjectContext) part of the Task, then gives it the properties unique to the model
+    @discardableResult convenience init(name: String, notes: String, context: NSManagedObjectContext) {
         
         self.init(context: context)
         
         self.name = name
         self.notes = notes
-        
         
         
     }
