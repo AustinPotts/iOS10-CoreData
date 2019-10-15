@@ -9,6 +9,12 @@
 import Foundation
 import CoreData
 
+enum TaskPriority: String, CaseIterable {
+    case low
+    case normal
+    case high
+    case critical
+}
 
 
 extension Task {
@@ -17,12 +23,13 @@ extension Task {
     
     
     //This initializer sets up the core data (NSManagedObjectContext) part of the Task, then gives it the properties unique to the model
-    @discardableResult convenience init(name: String, notes: String, context: NSManagedObjectContext) {
+    @discardableResult convenience init(name: String, notes: String, priority: TaskPriority, context: NSManagedObjectContext) {
         
         self.init(context: context)
         
         self.name = name
         self.notes = notes
+        self.priority = priority.rawValue
         
         
     }

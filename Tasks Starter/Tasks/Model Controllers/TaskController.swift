@@ -13,16 +13,18 @@ import CoreData
 class TaskController {
     
     //CRUD
-    func createTask(with name: String, notes: String, context: NSManagedObjectContext) {
+    func createTask(with name: String, notes: String, priority: TaskPriority, context: NSManagedObjectContext) {
     
-        Task(name: name, notes: notes, context: context)
+        Task(name: name, notes: notes, priority: priority, context: context)
+        
         CoreDataStack.share.saveToPersistentStore()
         
     }
     
-    func updateTask(task: Task, name: String, notes: String) {
+    func updateTask(task: Task, name: String, notes: String, priority: TaskPriority) {
         task.name = name
         task.notes = notes
+        task.priority = priority.rawValue
         
         CoreDataStack.share.saveToPersistentStore()
         

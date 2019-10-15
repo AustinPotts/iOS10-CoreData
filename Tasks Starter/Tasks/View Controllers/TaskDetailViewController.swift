@@ -16,6 +16,7 @@ class TaskDetailViewController: UIViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet weak var prioritySegmentControl: UISegmentedControl!
     
     
     override func viewDidLoad() {
