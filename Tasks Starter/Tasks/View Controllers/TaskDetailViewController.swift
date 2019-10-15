@@ -42,10 +42,14 @@ class TaskDetailViewController: UIViewController {
         if let name = nameTextField.text,
             let notes = notesTextView.text {
             
+            let index = prioritySegmentControl.selectedSegmentIndex
+            
+            let priority = TaskPriority.allCases[index]
+            
             if let task = task {
-                taskController?.updateTask(task: task, name: name, notes: notes)
+                taskController?.updateTask(task: task, name: name, notes: notes, priority: priority)
             } else {
-                taskController?.createTask(with: name, notes: notes, context: CoreDataStack.share.mainContext)
+                taskController?.createTask(with: name, notes: notes, priority: priority, context: CoreDataStack.share.mainContext)
             }
             
         }
@@ -61,6 +65,15 @@ class TaskDetailViewController: UIViewController {
         title = task?.name ?? "Create Task"
         nameTextField.text = task?.name
         notesTextView.text = task?.notes
+        
+        if let priorityString = task?.priority,
+            let priority = TaskPriority(rawValue: priorityString) {
+            
+            let index = TaskPriority.allCases.firstIndex(of: priority) ?? 0
+            
+            prioritySegmentControl.selectedSegmentIndex = index
+            
+        }
         
     }
     
