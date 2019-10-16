@@ -20,6 +20,15 @@ enum TaskPriority: String, CaseIterable {
 extension Task {
     
     
+    var taskRepresentation: TaskRepresentation? {
+        
+        guard let name = name,
+        let priority = priority,
+            let identifier = identifier else{return nil }
+        
+        return TaskRepresentation(name: name, notes: notes, identifier: identifier, priority: priority)
+        
+    }
     
     
     //This initializer sets up the core data (NSManagedObjectContext) part of the Task, then gives it the properties unique to the model
