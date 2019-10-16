@@ -167,6 +167,7 @@ extension TasksTableViewController: NSFetchedResultsControllerDelegate {
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         
+        //collection of index's with no duplicates section 1,2,3 etc.
         let sectionSet = IndexSet(integer: sectionIndex)
         
         switch type {
