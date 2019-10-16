@@ -23,7 +23,7 @@ extension Task {
     
     
     //This initializer sets up the core data (NSManagedObjectContext) part of the Task, then gives it the properties unique to the model
-    @discardableResult convenience init(name: String, notes: String, priority: TaskPriority, identifier: UUID = UUID(), context: NSManagedObjectContext) {
+    @discardableResult convenience init(name: String, notes: String?, priority: TaskPriority, identifier: UUID = UUID(), context: NSManagedObjectContext) {
         
         self.init(context: context)
         
@@ -36,6 +36,18 @@ extension Task {
     }
     
     
+    @discardableResult convenience init?(taskRepresentation: TaskRepresentation, context: NSManagedObjectContext){
+        
+        guard let priority = TaskPriority(rawValue: taskRepresentation.priority) else {return nil}
+        
+        self.init(name: taskRepresentation.name,
+                  notes: taskRepresentation.notes,
+                  priority: priority,
+                  identifier: taskRepresentation.identifier,
+                  context: context)
+        
+        
+    }
     
     
     

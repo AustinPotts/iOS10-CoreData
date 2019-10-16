@@ -42,20 +42,75 @@ class TaskController {
             
             let decoder = JSONDecoder()
             
-            let tasks = try decoder.decode(<#T##type: Decodable.Protocol##Decodable.Protocol#>, from: <#T##Data#>)
+            
             do {
+                let tasks = try decoder.decode([String: TaskRepresentation].self, from: data).map({ $0.value })
+                
+               self.updateTasks(with: tasks)
                 
             } catch {
+                NSLog("Error decoding TaskRep: \(error)")
                 
             }
             
-            
+            completion()
             
         }.resume()
         
+    }
+    
+    
+    func updateTasks(with representations: [TaskRepresentation]){
         
+        // Which representations do we already have in core data
         
+        let identifiersToFetch = representations.map({ $0.identifier })
         
+        let representationsByID = Dictionary(uniqueKeysWithValues: zip(identifiersToFetch, representations))
+        
+        //Make a mutable copy of the Dictionary above
+        var tasksToCreate = representationsByID
+        
+        do {
+            let context = CoreDataStack.share.mainContext
+            
+            let fetchRequest: NSFetchRequest<Task> = Task.fetchRequest()
+            
+            //Only fetch the tasks with identifiers that are in this identifersToFetch array
+            fetchRequest.predicate = NSPredicate(format: "identifier IN %@", identifiersToFetch)
+            
+            let exisitingTasks = try context.fetch(fetchRequest)
+            
+            //Update the ones we have
+            for task in exisitingTasks {
+                
+                // Grab the task representation that corresponds to this task
+                guard let identifier = task.identifier,
+                    let representation = representationsByID[identifier]else { continue }
+                
+                task.name = representation.name
+                task.notes = representation.notes
+                task.priority = representation.priority
+                
+                //We just updated a Task, we dont need to create a new Task for this identifier
+                tasksToCreate.removeValue(forKey: identifier)
+             }
+                
+                //Figure out which We dont have
+                for representation in tasksToCreate.values {
+                    
+                    Task(taskRepresentation: representation, context: context)
+                }
+                
+                
+            
+            CoreDataStack.share.saveToPersistentStore()
+        } catch {
+            NSLog("Error fetching tasks from persistence store: \(error)")
+            
+        }
+        
+       
     }
     
     

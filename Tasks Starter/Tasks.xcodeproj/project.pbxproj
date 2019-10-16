@@ -59,7 +59,6 @@
 		9D4408BA211FF430005E2116 = {
 			isa = PBXGroup;
 			children = (
-				4518844723578385001E6CCD /* TaskRepresentation.swift */,
 				9D4408C5211FF431005E2116 /* Tasks */,
 				9D4408C4211FF431005E2116 /* Products */,
 			);
@@ -100,6 +99,7 @@
 		9D4408D9211FF4EA005E2116 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4518844723578385001E6CCD /* TaskRepresentation.swift */,
 				4518840C2354E3A7001E6CCD /* Task+Convenience.swift */,
 				4518840A2354DD78001E6CCD /* CoreDataStack.swift */,
 				451884072354DA73001E6CCD /* Tasks.xcdatamodeld */,
