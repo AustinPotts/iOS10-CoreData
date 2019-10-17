@@ -83,14 +83,23 @@ class TaskController {
         //Make a mutable copy of the Dictionary above
         var tasksToCreate = representationsByID
         
+        let context = CoreDataStack.share.container.newBackgroundContext()
+        
+        context.performAndWait {
+            
+        
+        
         do {
-            let context = CoreDataStack.share.mainContext
+            
             
             let fetchRequest: NSFetchRequest<Task> = Task.fetchRequest()
             
             //Only fetch the tasks with identifiers that are in this identifersToFetch array
             fetchRequest.predicate = NSPredicate(format: "identifier IN %@", identifiersToFetch)
             
+            
+            
+            // We need to run the context.fetch on the main queue, because the context is the main context
             let exisitingTasks = try context.fetch(fetchRequest)
             
             //Update the ones we have
@@ -116,12 +125,12 @@ class TaskController {
                 
                 
             
-            CoreDataStack.share.saveToPersistentStore()
+            CoreDataStack.share.save(context: context)
         } catch {
             NSLog("Error fetching tasks from persistence store: \(error)")
             
+         }
         }
-        
        
     }
     
@@ -174,7 +183,7 @@ class TaskController {
         let task = Task(name: name, notes: notes, priority: priority, context: context)
         
         
-        CoreDataStack.share.saveToPersistentStore()
+        CoreDataStack.share.save()
         putTask(task: task)
         
     }
@@ -184,9 +193,14 @@ class TaskController {
         task.notes = notes
         task.priority = priority.rawValue
         
-        CoreDataStack.share.saveToPersistentStore()
+        CoreDataStack.share.save()
         putTask(task: task)
         
+    }
+    
+    func delete(task: Task) {
+        CoreDataStack.share.mainContext.delete(task)
+        CoreDataStack.share.save()
     }
     
     

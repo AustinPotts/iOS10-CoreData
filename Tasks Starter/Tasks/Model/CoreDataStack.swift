@@ -32,6 +32,8 @@ class CoreDataStack {
                 fatalError("Error loading Persistent Stores: \(error)")
             }
         })
+        
+        container.viewContext.automaticallyMergesChangesFromParent = true
         return container
     }()
     
@@ -43,13 +45,18 @@ class CoreDataStack {
     
     
     //Save to persistent store
-    func saveToPersistentStore() {
+    func save(context: NSManagedObjectContext = CoreDataStack.share.mainContext) {
+        
+        context.performAndWait {
+            
         do{
-            try mainContext.save()
+            try context.save()
         } catch {
             NSLog("Error saving context \(error)")
-            mainContext.reset()
+            context.reset()
+         }
         }
+
     }
     
     
